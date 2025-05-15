@@ -1,8 +1,8 @@
 # Homebrew Tap for SmartLoop CLI
 
-This repository contains Homebrew formulae for installing the [SmartLoop CLI](https://github.com/smartloop-ai/smartloop) and related tools.
+This is the official Homebrew tap for [SmartLoop CLI](https://github.com/smartloop-ai/smartloop).
 
-## What is SmartLoop?
+## About SmartLoop
 
 SmartLoop is an AI platform that simplifies the creation, deployment, and management of AI applications. The SmartLoop CLI provides a command-line interface to interact with the SmartLoop platform.
 
@@ -18,9 +18,9 @@ brew tap smartloop-ai/smartloop
 brew install smartloop
 ```
 
-## Updating
+## Upgrading
 
-To update to the latest version:
+To upgrade to the latest version:
 
 ```bash
 brew update
@@ -29,32 +29,27 @@ brew upgrade smartloop
 
 ## Usage
 
-After installation, you can use the SmartLoop CLI by running the `smartloop` command:
+After installation, you can use the SmartLoop CLI with the following commands:
 
 ```bash
-# Display help
+# View available commands
 smartloop --help
 
-# Check the installed version
-smartloop --version
-
-# Login to SmartLoop
+# Log in to your SmartLoop account
 smartloop login
 
-# List your projects
+# View your projects
 smartloop projects list
 ```
+
+For more detailed usage instructions, please visit the [SmartLoop Documentation](https://github.com/smartloop-ai/smartloop).
 
 ## Requirements
 
 - macOS or Linux
-- Python 3.11 or later (installed automatically by Homebrew)
-
-## Documentation
-
-For detailed documentation on SmartLoop CLI usage, visit [the SmartLoop documentation](https://github.com/smartloop-ai/smartloop).
+- Python 3.11 or later (installed automatically via Homebrew)
 
 ## License
 
-The SmartLoop CLI is distributed under the MIT License.
+SmartLoop CLI is distributed under the MIT License.
 
