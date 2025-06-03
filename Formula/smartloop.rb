@@ -3,9 +3,9 @@ class Smartloop < Formula
 
   desc "SmartLoop CLI - Command-line interface for the SmartLoop AI platform"
   homepage "https://github.com/smartloop-ai/smartloop"
-  url "https://github.com/smartloop-ai/smartloop/archive/refs/tags/v1.2.6.tar.gz"
-  version "1.2.6"
-  sha256 "bf29ab6e5254443eeb118ed29d347962c1610c9c2eebb7d67404815fa973ba08"
+  url "https://github.com/smartloop-ai/smartloop/archive/refs/tags/v1.2.8.tar.gz"
+  version "1.2.8"
+  sha256 "6b4fce5ba3462f9a8e7504448f05ed38724405d045f23b335374c7dc6da4e501" # Calculate the SHA256 for v1.2.8 tarball
   license "MIT"
 
   head "https://github.com/smartloop-ai/smartloop.git", branch: "main"
@@ -42,6 +42,12 @@ class Smartloop < Formula
     venv.pip_install "urllib3==2.4.0"
     venv.pip_install "wcwidth==0.2.13"
     venv.pip_install "xmod==1.8.1"
+    venv.pip_install "markupsafe==2.1.5"
+    venv.pip_install "werkzeug==3.0.1"
+    venv.pip_install "blinker==1.7.0"
+    venv.pip_install "jinja2==3.1.4"
+    venv.pip_install "itsdangerous==2.1.2"
+    venv.pip_install "flask==3.0.0"
     
     # Install the package itself
     venv.pip_install_and_link buildpath
