@@ -3,9 +3,9 @@ class Smartloop < Formula
 
   desc "SmartLoop CLI - Command-line interface for the SmartLoop AI platform"
   homepage "https://github.com/smartloop-ai/smartloop"
-  url "https://github.com/smartloop-ai/smartloop/archive/refs/tags/v1.2.8.tar.gz"
-  version "1.2.8"
-  sha256 "6b4fce5ba3462f9a8e7504448f05ed38724405d045f23b335374c7dc6da4e501" # Calculate the SHA256 for v1.2.8 tarball
+  url "https://github.com/smartloop-ai/smartloop/archive/refs/tags/v1.2.9.tar.gz"
+  version "1.2.9"
+  sha256 "24390e59672a4f87e371ede57d3196bf24e8368d3438f99634d31505e4d85121"
   license "MIT"
 
   head "https://github.com/smartloop-ai/smartloop.git", branch: "main"
