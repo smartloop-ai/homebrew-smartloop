@@ -8,14 +8,14 @@ This is the official Homebrew tap for Smartloop. It is a low-code LLM framework 
 # Add the Smartloop tap
 brew tap smartloop-ai/smartloop
 
-# Install the SLP CLI
-brew install slp
+# Install the Smartloop CLI
+brew install smartloop
 
 ## Upgrading
 
 ```bash
 brew update
-brew upgrade slp
+brew upgrade smartloop
 ```
 
 ## Usage
@@ -56,8 +56,8 @@ slp server status
 The server can also be managed via `brew services`:
 
 ```bash
-brew services start slp
-brew services stop slp
+brew services start smartloop
+brew services stop smartloop
 ```
 
 ### Supported Models

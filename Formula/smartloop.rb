@@ -21,12 +21,27 @@ class Smartloop < Formula
     bin.install_symlink libexec/"slp"
   end
 
+  def post_install
+    (var/"log").mkpath
+    system "brew", "services", "start", "smartloop"
+  end
+
   service do
     run [opt_bin/"slp", "server", "start"]
     keep_alive true
     log_path var/"log/smartloop.log"
     error_log_path var/"log/smartloop.log"
     working_dir opt_libexec
+  end
+
+  def caveats
+    <<~EOS
+      The Smartloop service has been started automatically.
+      To manage the service:
+        brew services stop smartloop
+        brew services start smartloop
+        brew services restart smartloop
+    EOS
   end
 
   test do
