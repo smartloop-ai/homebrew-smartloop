@@ -1,55 +1,82 @@
-# Homebrew Tap for SmartLoop CLI
+# Homebrew Tap for Smartloop
 
-This is the official Homebrew tap for [SmartLoop CLI](https://github.com/smartloop-ai/smartloop).
-
-## About SmartLoop
-
-SmartLoop is an AI platform that simplifies the creation, deployment, and management of AI applications. The SmartLoop CLI provides a command-line interface to interact with the SmartLoop platform.
+This is the official Homebrew tap for Smartloop. It is a low-code LLM framework for fine-tuning and running models on edge devices.
 
 ## Installation
 
-To install the SmartLoop CLI using Homebrew:
-
 ```bash
-# Add the SmartLoop tap
+# Add the Smartloop tap
 brew tap smartloop-ai/smartloop
 
-# Install the SmartLoop CLI
-brew install smartloop
-```
+# Install the SLP CLI
+brew install slp
 
 ## Upgrading
 
-To upgrade to the latest version:
-
 ```bash
 brew update
-brew upgrade smartloop
+brew upgrade slp
 ```
 
 ## Usage
 
-After installation, you can use the SmartLoop CLI with the following commands:
-
 ```bash
 # View available commands
-smartloop --help
+slp --help
 
-# Log in to your SmartLoop account
-smartloop login
+# Initialize a new project
+slp init --model=gemma3_1b -t <developer_token>
 
-# View your projects
-smartloop projects list
+# Add a document for training
+slp add document.pdf
+
+# Run interactive chat
+slp run
 ```
 
-For more detailed usage instructions, please visit the [SmartLoop Documentation](https://github.com/smartloop-ai/smartloop).
+### Project Management
+
+```bash
+slp projects create <name> [--model MODEL]
+slp projects list
+slp projects switch <name>
+slp status
+```
+
+### Server Management
+
+SLP includes a background API server compatible with OpenAI's chat completion format:
+
+```bash
+slp server start
+slp server stop
+slp server status
+```
+
+The server can also be managed via `brew services`:
+
+```bash
+brew services start slp
+brew services stop slp
+```
+
+### Supported Models
+
+| Model | Base Model | Size |
+|-------|-----------|------|
+| `gemma3_1b` | google/gemma-3-1b-it | 1B |
+| `gemma3_4b` | google/gemma-3-4b-it | 4B |
+| `gemma3_27b` | google/gemma-3-27b-it | 27B |
+| `llama3_1b` | meta-llama/Llama-3.2-1B-Instruct | 1B |
+| `llama3_3b` | meta-llama/Llama-3.2-3B-Instruct | 3B |
+| `phi4_mini` | microsoft/phi-4-mini | 4B |
 
 ## Requirements
 
 - macOS or Linux
 - Python 3.11 or later (installed automatically via Homebrew)
+- CMake (installed automatically via Homebrew)
 
 ## License
 
-SmartLoop CLI is distributed under the MIT License.
-
+SLP is distributed under the Apache 2.0 License.
