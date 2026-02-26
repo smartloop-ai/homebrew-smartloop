@@ -4,6 +4,9 @@ class Smartloop < Formula
   version "1.0.1"
   license "Apache-2.0"
 
+  # Prevent Homebrew from rewriting @rpath in the PyInstaller bundle's dylibs.
+  skip_clean :all
+
   on_macos do
     url "https://storage.googleapis.com/smartloop-gcp-us-east-releases/1.0.1/darwin/slp.tar.gz"
     sha256 "f55280e92af21af932f921aa6de3474695986347ab608055d2c388565abb6c37"
@@ -23,7 +26,6 @@ class Smartloop < Formula
 
   def post_install
     (var/"log").mkpath
-    system "brew", "services", "start", "smartloop"
   end
 
   service do
@@ -36,10 +38,11 @@ class Smartloop < Formula
 
   def caveats
     <<~EOS
-      The Smartloop service has been started automatically.
+      To start the Smartloop service:
+        brew services start smartloop
+
       To manage the service:
         brew services stop smartloop
-        brew services start smartloop
         brew services restart smartloop
     EOS
   end
