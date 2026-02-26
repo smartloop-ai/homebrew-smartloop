@@ -64,12 +64,12 @@ brew services stop smartloop
 
 | Model | Base Model | Size |
 |-------|-----------|------|
-| `gemma3_1b` | google/gemma-3-1b-it | 1B |
-| `gemma3_4b` | google/gemma-3-4b-it | 4B |
-| `gemma3_27b` | google/gemma-3-27b-it | 27B |
-| `llama3_1b` | meta-llama/Llama-3.2-1B-Instruct | 1B |
-| `llama3_3b` | meta-llama/Llama-3.2-3B-Instruct | 3B |
-| `phi4_mini` | microsoft/phi-4-mini | 4B |
+| `gemma3-1b` | google/gemma-3-1b-it | 1B |
+| `gemma3-4b` | google/gemma-3-4b-it | 4B |
+| `gemma3-27b` | google/gemma-3-27b-it | 27B |
+| `llama3-1b` | meta-llama/Llama-3.2-1B-Instruct | 1B |
+| `llama3-3b` | meta-llama/Llama-3.2-3B-Instruct | 3B |
+| `phi4-mini` | microsoft/phi-4-mini | 4B |
 
 ## Requirements
 
