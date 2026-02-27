@@ -34,6 +34,7 @@ class Smartloop < Formula
     log_path var/"log/smartloop.log"
     error_log_path var/"log/smartloop.log"
     working_dir opt_libexec
+    environment_variables API_PORT: "0"
   end
 
   def caveats
