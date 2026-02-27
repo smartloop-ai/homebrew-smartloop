@@ -8,13 +8,13 @@ class Smartloop < Formula
   skip_clean :all
 
   on_macos do
-    url "https://storage.googleapis.com/smartloop-gcp-us-east-releases/1.0.1/darwin/slp.tar.gz"
-    sha256 "f55280e92af21af932f921aa6de3474695986347ab608055d2c388565abb6c37"
+    url "https://storage.googleapis.com/smartloop-gcp-us-east-releases/1.0.1/darwin/arm64/slp.tar.gz"
+    sha256 "fc10dab3a97842d30a02e33a3b20fccc657d41f382e447c7c9480b5d6291d8e6"
   end
 
   on_linux do
-    url "https://storage.googleapis.com/smartloop-gcp-us-east-releases/1.0.1/linux/slp.tar.gz"
-    sha256 "73fd941e1dec5c2f6250a20900ee05759d3db172bbc3b6263f89c3964bcc11aa"
+    url "https://storage.googleapis.com/smartloop-gcp-us-east-releases/1.0.1/linux/amd64/slp.tar.gz"
+    sha256 "3a16b1d775d22b4d347bf5c878961125794c47810b4cd0ef7cc7a304ce84ae5a"
   end
 
   def install
