@@ -37,7 +37,7 @@ slp run
 ### Project Management
 
 ```bash
-slp projects create <name> [--model MODEL]
+slp projects create <name>
 slp projects list
 slp projects switch <name>
 slp status
