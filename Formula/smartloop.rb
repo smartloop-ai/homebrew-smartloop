@@ -9,7 +9,7 @@ class Smartloop < Formula
 
   on_macos do
     url "https://storage.googleapis.com/smartloop-gcp-us-east-releases/1.0.1/darwin/arm64/slp.tar.gz"
-    sha256 "45573ab744457a27535ddf72a28fb22a041d977a036cff03b005bc02904e6255"
+    sha256 "48ccf608d643b8ac5afb9683a8dc1f7d9bb3677d444d822feef9971f8ec73d5c"
   end
 
   on_linux do
