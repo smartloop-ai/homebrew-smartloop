@@ -1,6 +1,6 @@
 # Homebrew Tap for Smartloop
 
-This is the official Homebrew tap for Smartloop. It is a low-code LLM framework for fine-tuning and running models on edge devices.
+This is the official Homebrew tap for Smartloop. It is an SLM framework for inference and fine-tuning models on edge devices.
 
 ## Installation
 
@@ -25,7 +25,7 @@ brew upgrade smartloop
 slp --help
 
 # Initialize a new project
-slp init --model=gemma3_1b -t <developer_token>
+slp init -t <developer_token>
 
 # Add a document for training
 slp add document.pdf
@@ -66,7 +66,6 @@ brew services stop smartloop
 |-------|-----------|------|
 | `gemma3-1b` | google/gemma-3-1b-it | 1B |
 | `gemma3-4b` | google/gemma-3-4b-it | 4B |
-| `gemma3-27b` | google/gemma-3-27b-it | 27B |
 | `llama3-1b` | meta-llama/Llama-3.2-1B-Instruct | 1B |
 | `llama3-3b` | meta-llama/Llama-3.2-3B-Instruct | 3B |
 | `phi4-mini` | microsoft/phi-4-mini | 4B |
