@@ -14,7 +14,7 @@ class Smartloop < Formula
 
   on_linux do
     url "https://storage.googleapis.com/smartloop-gcp-us-east-releases/1.0.1/linux/amd64/slp.tar.gz"
-    sha256 "5cec6f66e23de047c210337ba83595c6da13727eac4927e2ac6f7d0da16a2bd2"
+    sha256 "11070808f96dbc039b95dfd0d088b6b8bfe6c7997d5fce85af892339f285b4d4"
   end
 
   def install
