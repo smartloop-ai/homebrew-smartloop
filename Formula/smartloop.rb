@@ -9,12 +9,12 @@ class Smartloop < Formula
 
   on_macos do
     url "https://storage.googleapis.com/smartloop-gcp-us-east-releases/1.0.1/darwin/arm64/slp.tar.gz"
-    sha256 "04256b0db534df30014ff2627ea05173da4b3c24baf2dd40a87a88f45d9ccc83"
+    sha256 "0839d92d9cb35cb17a1170513aedfb62d12c22d17c8260bdefa6350e5c8fdd57"
   end
 
   on_linux do
     url "https://storage.googleapis.com/smartloop-gcp-us-east-releases/1.0.1/linux/amd64/slp.tar.gz"
-    sha256 "106418ab759df44a134812d1f7256b63189cdd109843729309470accb8383f17"
+    sha256 "6d4ca061c72fe000ca67be03e6fe92834de757226c9f2bfe584a4266a3a09412"
   end
 
   def install
