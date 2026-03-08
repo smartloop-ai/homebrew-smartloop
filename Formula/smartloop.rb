@@ -26,6 +26,7 @@ class Smartloop < Formula
 
   def post_install
     (var/"log").mkpath
+    (Pathname.new(Dir.home)/".smartloop").mkpath
   end
 
   service do
