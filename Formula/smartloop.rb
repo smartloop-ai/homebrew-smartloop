@@ -9,12 +9,12 @@ class Smartloop < Formula
 
   on_macos do
     url "https://storage.googleapis.com/smartloop-gcp-us-east-releases/1.0.1/darwin/arm64/slp.tar.gz"
-    sha256 "0839d92d9cb35cb17a1170513aedfb62d12c22d17c8260bdefa6350e5c8fdd57"
+    sha256 "5b9bd06168d2679bb6a59c72b9864b82f11c618f425591582f7091374b392708"
   end
 
   on_linux do
     url "https://storage.googleapis.com/smartloop-gcp-us-east-releases/1.0.1/linux/amd64/slp.tar.gz"
-    sha256 "6d4ca061c72fe000ca67be03e6fe92834de757226c9f2bfe584a4266a3a09412"
+    sha256 "8b3e11076a36e746115a9477d3f908aa92cd877c50be9a2b36525a3a22ebe5d6"
   end
 
   def install
@@ -26,6 +26,7 @@ class Smartloop < Formula
 
   def post_install
     (var/"log").mkpath
+    (Pathname.new(Dir.home)/".smartloop").mkpath
   end
 
   service do
