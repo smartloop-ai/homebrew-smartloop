@@ -40,6 +40,7 @@ class Smartloop < Formula
     (bin/"slp").write <<~EOS
       #!/bin/bash
       export SPATIALINDEX_C_LIBRARY="#{Formula["spatialindex"].opt_lib}/libspatialindex_c.so"
+      export API_PORT=0
       exec "#{virtualenv}/bin/slp" "$@"
     EOS
   end
