@@ -6,7 +6,6 @@ class Smartloop < Formula
   license "GPL-3.0"
 
   depends_on "cmake" => :build
-  depends_on "gcc" => :build
   depends_on "python@3.11"
   depends_on "spatialindex"
 
@@ -19,22 +18,21 @@ class Smartloop < Formula
 
     extra_index = "https://us-central1-python.pkg.dev/smartloop-gcp-us-east/slp-pypi/simple/"
 
-    # Set compilers explicitly so native extensions (llama-cpp-python) can build
-    ENV["CC"] = Formula["gcc"].opt_bin/"gcc-15"
-    ENV["CXX"] = Formula["gcc"].opt_bin/"g++-15"
-    ENV["CMAKE_ARGS"] = "-DCMAKE_C_COMPILER=#{ENV["CC"]} -DCMAKE_CXX_COMPILER=#{ENV["CXX"]}"
+    # Use Clang for Python native extensions (GCC has macOS SDK header issues)
+    clang_path = "/Library/Developer/CommandLineTools/usr/bin"
+    ENV["CMAKE_ARGS"] = "-DCMAKE_C_COMPILER=#{clang_path}/clang -DCMAKE_CXX_COMPILER=#{clang_path}/clang++ -DLLAMA_HIPBLAS=off -DGGML_USE_ACCELERATE=off -DCMAKE_BUILD_TYPE=Release"
+    ENV["CFLAGS"] = "-O3"
+    ENV["CXXFLAGS"] = "-O3"
+    ENV["LDFLAGS"] = "-Wl,-headerpad_max_install_names"
 
-    # Install the smartloop dependency first (needed at build time for dynamic version)
-    system venv_pip, "install", "--extra-index-url", extra_index, "smartloop==1.0.2"
-
-    # Install the main package (no build isolation so it can find smartloop for dynamic version)
-    system venv_pip, "install", "--no-build-isolation", "--extra-index-url", extra_index, "."
+    system venv_pip, "install", "scikit-build-core", "cmake", "ninja"
+    system venv_pip, "install", "--no-build-isolation", "--extra-index-url", extra_index, "smartloop==1.0.2"
 
     # Create a wrapper script that sets up the runtime environment
     (bin/"slp").write <<~EOS
       #!/bin/bash
       export SPATIALINDEX_C_LIBRARY="#{Formula["spatialindex"].opt_lib}/libspatialindex_c.so"
-      exec "#{virtualenv}/bin/slp" "$@"
+      exec "#{virtualenv}/bin/slp-server" "$@"
     EOS
   end
 
@@ -44,7 +42,7 @@ class Smartloop < Formula
   end
 
   service do
-    run [opt_bin/"slp", "server", "start"]
+    run [opt_bin/"slp", "start"]
     keep_alive true
     log_path var/"log/smartloop.log"
     error_log_path var/"log/smartloop.log"
