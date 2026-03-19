@@ -29,12 +29,13 @@ class Smartloop < Formula
 
     system venv_pip, "install", "scikit-build-core", "cmake", "ninja"
     system venv_pip, "install", "--no-build-isolation", "--extra-index-url", extra_index, "smartloop==1.0.2"
+    system venv_pip, "install", "--no-build-isolation",
+            "git+https://github.com/smartloop-ai/smartloop.git@v1.0.2#egg=slp"
 
-    # Create a wrapper script that sets up the runtime environment
     (bin/"slp").write <<~EOS
       #!/bin/bash
       export SPATIALINDEX_C_LIBRARY="#{Formula["spatialindex"].opt_lib}/libspatialindex_c.so"
-      exec "#{virtualenv}/bin/slp-server" "$@"
+      exec "#{virtualenv}/bin/slp" "$@"
     EOS
   end
 
@@ -44,7 +45,7 @@ class Smartloop < Formula
   end
 
   service do
-    run [opt_bin/"slp", "start"]
+    run [opt_bin/"slp", "server", "start"]
     keep_alive true
     log_path var/"log/smartloop.log"
     error_log_path var/"log/smartloop.log"
