@@ -18,12 +18,14 @@ class Smartloop < Formula
 
     extra_index = "https://us-central1-python.pkg.dev/smartloop-gcp-us-east/slp-pypi/simple/"
 
-    # Use Clang for Python native extensions (GCC has macOS SDK header issues)
-    clang_path = "/Library/Developer/CommandLineTools/usr/bin"
-    ENV["CMAKE_ARGS"] = "-DCMAKE_C_COMPILER=#{clang_path}/clang -DCMAKE_CXX_COMPILER=#{clang_path}/clang++ -DLLAMA_HIPBLAS=off -DGGML_USE_ACCELERATE=off -DCMAKE_BUILD_TYPE=Release"
-    ENV["CFLAGS"] = "-O3"
-    ENV["CXXFLAGS"] = "-O3"
-    ENV["LDFLAGS"] = "-Wl,-headerpad_max_install_names"
+    if OS.mac?
+      ENV["CMAKE_ARGS"] = "-DLLAMA_METAL=on -DCMAKE_BUILD_TYPE=Release"
+      ENV["LDFLAGS"] = "-Wl,-headerpad_max_install_names"
+    elsif Linux.with_wsl?
+      ENV["CMAKE_ARGS"] = "-DLLAMA_CUBLAS=on -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-12.6 -DCMAKE_BUILD_TYPE=Release"
+    elsif Hardware::CPU.intel? && OS.linux?
+      ENV["CMAKE_ARGS"] = "-DLLAMA_CUBLAS=on -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda -DCMAKE_BUILD_TYPE=Release"
+    end
 
     system venv_pip, "install", "scikit-build-core", "cmake", "ninja"
     system venv_pip, "install", "--no-build-isolation", "--extra-index-url", extra_index, "smartloop==1.0.2"
