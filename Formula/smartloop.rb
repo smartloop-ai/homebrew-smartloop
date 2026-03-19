@@ -32,6 +32,11 @@ class Smartloop < Formula
     system venv_pip, "install", "--no-build-isolation",
             "git+https://github.com/smartloop-ai/smartloop.git@v1.0.2#egg=slp"
 
+    # Overwrite main.py with the slp CLI version (not included in package)
+    venv_site = virtualenv/"lib/python3.11/site-packages"
+    system "curl", "-sSL", "-o", "#{venv_site}/main.py",
+           "https://raw.githubusercontent.com/smartloop-ai/smartloop/v1.0.2/main.py"
+
     (bin/"slp").write <<~EOS
       #!/bin/bash
       export SPATIALINDEX_C_LIBRARY="#{Formula["spatialindex"].opt_lib}/libspatialindex_c.so"
