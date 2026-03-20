@@ -1,8 +1,8 @@
 class Smartloop < Formula
   desc "Smartloop framework for building LLM agents and tools"
   homepage "https://smartloop.ai"
-  url "https://github.com/smartloop-ai/smartloop/archive/refs/tags/v1.0.2.tar.gz"
-  sha256 "03f49a46b8f0f45e699fdfac37153a2514366a684610837d229e6b59f1a377ef"
+  url "https://github.com/smartloop-ai/smartloop/archive/refs/tags/v1.0.1.tar.gz"
+  sha256 "878718caf5c13cd8151ebab2373266b572bf7e69fc12814c14145775d3fcfc40"
   license "GPL-3.0"
 
   depends_on "cmake" => :build
@@ -28,13 +28,13 @@ class Smartloop < Formula
     end
 
     system venv_pip, "install", "scikit-build-core", "cmake", "ninja"
-    system venv_pip, "install", "--no-build-isolation", "--extra-index-url", extra_index, "smartloop==1.0.2"
+    system venv_pip, "install", "--no-build-isolation", "--extra-index-url", extra_index, "smartloop==1.0.1"
     system venv_pip, "install", "--no-build-isolation",
-            "git+https://github.com/smartloop-ai/smartloop.git@v1.0.2#egg=slp"
+            "git+https://github.com/smartloop-ai/smartloop.git@v1.0.1#egg=slp"
 
     venv_site = virtualenv/"lib/python3.11/site-packages"
     system "curl", "-sSL", "-o", "#{venv_site}/main.py",
-           "https://raw.githubusercontent.com/smartloop-ai/smartloop/v1.0.2/main.py"
+           "https://raw.githubusercontent.com/smartloop-ai/smartloop/v1.0.1/main.py"
 
     (bin/"slp").write <<~EOS
       #!/bin/bash
