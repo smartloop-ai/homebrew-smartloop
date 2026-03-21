@@ -2,7 +2,7 @@ class Smartloop < Formula
   desc "Smartloop framework for building LLM agents and tools"
   homepage "https://smartloop.ai"
   url "https://github.com/smartloop-ai/smartloop/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "878718caf5c13cd8151ebab2373266b572bf7e69fc12814c14145775d3fcfc40"
+  sha256 "8e9f92cb31945fb34e9cf091997c2e8cb920c59eb52c0e8c51d8c4d467817a58"
   license "GPL-3.0"
 
   depends_on "cmake" => :build
