@@ -21,10 +21,9 @@ class Smartloop < Formula
     if OS.mac?
       ENV["CMAKE_ARGS"] = "-DLLAMA_METAL=on -DCMAKE_BUILD_TYPE=Release"
       ENV["LDFLAGS"] = "-Wl,-headerpad_max_install_names"
-    elsif Linux.with_wsl?
-      ENV["CMAKE_ARGS"] = "-DLLAMA_CUBLAS=on -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-12.6 -DCMAKE_BUILD_TYPE=Release"
-    elsif Hardware::CPU.intel? && OS.linux?
-      ENV["CMAKE_ARGS"] = "-DLLAMA_CUBLAS=on -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda -DCMAKE_BUILD_TYPE=Release"
+    elsif OS.linux?
+      cuda_root = Dir["/usr/local/cuda*"].max || "/usr/local/cuda"
+      ENV["CMAKE_ARGS"] = "-DLLAMA_CUBLAS=on -DCUDA_TOOLKIT_ROOT_DIR=#{cuda_root} -DCMAKE_BUILD_TYPE=Release"
     end
 
     system venv_pip, "install", "scikit-build-core", "cmake", "ninja"
