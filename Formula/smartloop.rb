@@ -22,7 +22,7 @@ class Smartloop < Formula
       ENV["CMAKE_ARGS"] = "-DLLAMA_METAL=on -DCMAKE_BUILD_TYPE=Release"
       ENV["LDFLAGS"] = "-Wl,-headerpad_max_install_names"
     elsif OS.linux?
-      cuda_root = Dir["/usr/local/cuda*"].max || "/usr/local/cuda"
+      cuda_root = ENV["CUDA_HOME"] || Dir["/usr/local/cuda*"].max || "/usr/local/cuda"
       ENV["CMAKE_ARGS"] = "-DLLAMA_CUBLAS=on -DCUDA_TOOLKIT_ROOT_DIR=#{cuda_root} -DCMAKE_BUILD_TYPE=Release"
     end
 
