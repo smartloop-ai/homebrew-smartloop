@@ -22,8 +22,17 @@ class Smartloop < Formula
       ENV["CMAKE_ARGS"] = "-DLLAMA_METAL=on -DCMAKE_BUILD_TYPE=Release"
       ENV["LDFLAGS"] = "-Wl,-headerpad_max_install_names"
     elsif OS.linux?
-      cuda_root = ENV["CUDA_HOME"] || Dir["/usr/local/cuda*"].max || "/usr/local/cuda"
-      ENV["CMAKE_ARGS"] = "-DLLAMA_CUBLAS=on -DCUDA_TOOLKIT_ROOT_DIR=#{cuda_root} -DCMAKE_BUILD_TYPE=Release"
+      gcc_ver = Dir["/usr/bin/g++-*"].map { |p| p[/g\+\+-(\d+)/, 1].to_i }.max
+      cc = "/usr/bin/gcc-#{gcc_ver}"
+      cxx = "/usr/bin/g++-#{gcc_ver}"
+      cuda_root = ENV["CUDA_HOME"]
+      nvcc = "#{cuda_root}/bin/nvcc" if cuda_root
+      if cuda_root && nvcc && File.executable?(nvcc)
+        ENV["CMAKE_ARGS"] = "-DGGML_CUDA=on -DCUDA_TOOLKIT_ROOT_DIR=#{cuda_root} -DCMAKE_CUDA_COMPILER=#{nvcc} -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=#{cc} -DCMAKE_CXX_COMPILER=#{cxx}"
+        ENV.prepend_path "PATH", "#{cuda_root}/bin"
+      else
+        ENV["CMAKE_ARGS"] = "-DGGML_CUDA=off -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=#{cc} -DCMAKE_CXX_COMPILER=#{cxx}"
+      end
     end
 
     system venv_pip, "install", "scikit-build-core", "cmake", "ninja"
