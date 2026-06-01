@@ -9,8 +9,6 @@ This is the official Homebrew tap for Smartloop. It is an agentic orchestration 
 brew install smartloop-ai/tap/smartloop
 
 ## Upgrading
-
-```bash
 brew update
 brew upgrade smartloop
 ```
