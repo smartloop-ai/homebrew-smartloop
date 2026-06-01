@@ -4,11 +4,15 @@ This is the official Homebrew tap for Smartloop. It is an agentic orchestration 
 
 ## Installation
 
+Install smartloop terminal by typing the following command: 
+
 ```bash
 # Installing from tap
 brew install smartloop-ai/tap/smartloop
+```
 
 ## Upgrading
+```bash
 brew update
 brew upgrade smartloop
 ```
